@@ -73,7 +73,16 @@
     text-align: center;
   }
 
-  /* ---- Header ---- */
+  /* ---- Header "sign" panel (solid, for readability) ---- */
+  .header-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 28px 24px 26px;
+    margin-bottom: 22px;
+    box-shadow: 0 6px 18px rgba(70,60,45,0.10);
+  }
+
   h1 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 500;
@@ -81,18 +90,16 @@
     letter-spacing: 0.05em;
     line-height: 1;
     color: var(--blue-deep);
-    margin-bottom: 14px;
-    text-shadow: 0 1px 12px rgba(231, 215, 191, 0.95);
+    margin-bottom: 13px;
   }
 
   .tagline {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 400;
-    letter-spacing: 0.26em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
-    line-height: 1.7;
-    text-shadow: 0 1px 8px rgba(231, 215, 191, 0.9);
+    line-height: 1.8;
   }
   .tagline .city { color: var(--red); }
 
@@ -101,17 +108,16 @@
     width: 46px;
     height: 1px;
     background: var(--red);
-    margin: 22px auto 16px;
+    margin: 18px auto 14px;
     opacity: 0.85;
   }
 
   .script {
     font-family: 'Parisienne', cursive;
-    font-size: 33px;
+    font-size: 31px;
     color: var(--red);
     line-height: 1;
-    margin-bottom: 26px;
-    text-shadow: 0 1px 10px rgba(231, 215, 191, 0.9);
+    margin: 0;
   }
 
   /* ---- Buttons ---- */
@@ -168,7 +174,15 @@
   .link.shop .meta { color: var(--blue); }
 
   /* ---- Footer / Instagram ---- */
-  .footer { margin-top: 34px; }
+  .footer { margin-top: 30px; }
+
+  .footer-inner {
+    display: inline-block;
+    background: rgba(253, 250, 243, 0.82);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 20px 11px;
+  }
 
   .ig {
     display: inline-flex;
@@ -179,19 +193,17 @@
     font-size: 13px;
     letter-spacing: 0.12em;
     transition: color .18s ease;
-    text-shadow: 0 1px 8px rgba(231, 215, 191, 0.9);
   }
   .ig:hover { color: var(--blue); }
   .ig svg { width: 17px; height: 17px; }
 
   .credit {
-    margin-top: 22px;
+    margin-top: 9px;
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--blue-deep);
-    opacity: 0.55;
-    text-shadow: 0 1px 8px rgba(231, 215, 191, 0.9);
+    opacity: 0.6;
   }
 </style>
 </head>
@@ -229,14 +241,16 @@
   </svg>
 
   <main class="page">
-    <h1>Vinova</h1>
-    <p class="tagline">
-      Balanced Body Certified Pilates Instructor<br />
-      <span class="city">Los Angeles</span>
-    </p>
+    <div class="header-card">
+      <h1>Vinova</h1>
+      <p class="tagline">
+        Balanced Body Certified Pilates Instructor<br />
+        <span class="city">Los Angeles</span>
+      </p>
 
-    <div class="divider"></div>
-    <p class="script">Book a Class</p>
+      <div class="divider"></div>
+      <p class="script">Move with Vinova</p>
+    </div>
 
     <nav class="links">
       <a class="link" href="https://classpass.com/studios/briiomare-beverly-hills" target="_blank" rel="noopener">
@@ -271,15 +285,17 @@
     </nav>
 
     <div class="footer">
-      <a class="ig" href="https://instagram.com/vinova.deniz" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-          <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
-          <circle cx="12" cy="12" r="4.2" />
-          <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
-        </svg>
-        @vinova.deniz
-      </a>
-      <p class="credit">Los Angeles · Reformer &amp; Mat</p>
+      <div class="footer-inner">
+        <a class="ig" href="https://instagram.com/vinova.deniz" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
+            <circle cx="12" cy="12" r="4.2" />
+            <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+          </svg>
+          @vinova.deniz
+        </a>
+        <p class="credit">Los Angeles · Reformer &amp; Mat</p>
+      </div>
     </div>
   </main>
 </body>
