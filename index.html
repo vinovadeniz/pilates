@@ -13,18 +13,18 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet" />
 
 <style>
   :root {
-    --sand:        #efe7da;  /* warm limestone background */
-    --sand-deep:   #e4d8c6;  /* gradient base */
-    --card:        #fbf8f2;  /* soft off-white card */
-    --ink:         #3a3a36;  /* soft charcoal text */
-    --muted:       #8c857a;  /* muted taupe */
-    --sea:         #6f9794;  /* muted mediterranean teal */
-    --sea-deep:    #557a77;  /* deeper teal for hover */
-    --line:        #e3dacb;  /* hairline border */
+    --cream:       #f7f1e3;  /* paper background */
+    --card:        #fdfaf3;  /* solid card over the pattern */
+    --ink:         #5b4636;  /* warm brown text */
+    --muted:       #8a7a66;  /* muted taupe-brown */
+    --brown-line:  #6b5238;  /* dark brown hairline */
+    --sage:        #93a173;  /* soft sage accent */
+    --sage-deep:   #6e7d52;  /* deeper sage for meta / hover */
+    --line:        #e6ddcb;  /* card border */
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,62 +32,70 @@
   body {
     font-family: 'Jost', sans-serif;
     color: var(--ink);
-    background: linear-gradient(170deg, var(--sand) 0%, var(--sand-deep) 100%);
-    background-attachment: fixed;
+    background-color: var(--cream);
+    /* soft sage vertical stripes */
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0 40px,
+      rgba(147, 161, 115, 0.28) 40px 52px
+    );
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    padding: 56px 22px 40px;
+    padding: 54px 22px 44px;
     -webkit-font-smoothing: antialiased;
   }
 
+  /* scattered floral layer, sits above stripes, below content */
+  .floral-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
   .page {
+    position: relative;
+    z-index: 1;
     width: 100%;
     max-width: 420px;
     text-align: center;
-  }
-
-  /* ---- Monogram ---- */
-  .monogram {
-    width: 74px;
-    height: 74px;
-    margin: 0 auto 22px;
-    border-radius: 50%;
-    border: 1px solid var(--sea);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
-    color: var(--sea-deep);
-    background: rgba(255,255,255,0.35);
   }
 
   /* ---- Header ---- */
   h1 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 500;
-    font-size: 42px;
-    letter-spacing: 0.04em;
+    font-size: 46px;
+    letter-spacing: 0.05em;
     line-height: 1;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    text-shadow: 0 1px 10px rgba(247, 241, 227, 0.9);
   }
 
   .tagline {
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 400;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 40px;
-  }
-
-  .section-label {
-    font-size: 10.5px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--muted);
-    margin: 6px 0 18px;
+  }
+
+  /* thin dark-brown divider */
+  .divider {
+    width: 46px;
+    height: 1px;
+    background: var(--brown-line);
+    margin: 24px auto 18px;
+    opacity: 0.7;
+  }
+
+  .script {
+    font-family: 'Parisienne', cursive;
+    font-size: 32px;
+    color: var(--sage-deep);
+    line-height: 1;
+    margin-bottom: 26px;
   }
 
   /* ---- Buttons ---- */
@@ -107,13 +115,13 @@
     padding: 17px 20px;
     transition: transform .18s ease, box-shadow .18s ease,
                 border-color .18s ease, background .18s ease;
-    box-shadow: 0 1px 2px rgba(90,80,60,0.04);
+    box-shadow: 0 1px 2px rgba(90,80,60,0.05);
   }
 
   .link:hover, .link:focus-visible {
     transform: translateY(-2px);
-    box-shadow: 0 10px 22px rgba(90,80,60,0.10);
-    border-color: var(--sea);
+    box-shadow: 0 10px 22px rgba(90,80,60,0.12);
+    border-color: var(--sage);
     background: #ffffff;
     outline: none;
   }
@@ -133,15 +141,13 @@
     font-size: 11px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--sea-deep);
+    color: var(--sage-deep);
   }
 
   .link .meta .dot { color: var(--muted); }
 
   /* ---- Footer / Instagram ---- */
-  .footer {
-    margin-top: 38px;
-  }
+  .footer { margin-top: 38px; }
 
   .ig {
     display: inline-flex;
@@ -153,25 +159,55 @@
     letter-spacing: 0.12em;
     transition: color .18s ease;
   }
-  .ig:hover { color: var(--sea-deep); }
+  .ig:hover { color: var(--sage-deep); }
   .ig svg { width: 17px; height: 17px; }
 
   .credit {
-    margin-top: 26px;
+    margin-top: 24px;
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #b6ab98;
+    color: #b9ac95;
   }
 </style>
 </head>
 <body>
-  <main class="page">
-    <div class="monogram">V</div>
-    <h1>Vinova</h1>
-    <p class="tagline">Pilates Instructor · Los Angeles</p>
+  <!-- Soft scattered rosebuds (tiled SVG pattern) -->
+  <svg class="floral-bg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
+    <defs>
+      <pattern id="buds" width="150" height="138" patternUnits="userSpaceOnUse">
+        <!-- bud 1 -->
+        <g transform="translate(34,40) rotate(10)">
+          <ellipse cx="-4" cy="9" rx="2.6" ry="5.4" fill="#8a9a6f" transform="rotate(-32 -4 9)"/>
+          <ellipse cx="4" cy="9" rx="2.6" ry="5.4" fill="#9caf7e" transform="rotate(32 4 9)"/>
+          <circle cx="-2.2" cy="0.5" r="2.9" fill="#e6b0b8"/>
+          <circle cx="2.2" cy="0.5" r="2.9" fill="#eec1c7"/>
+          <circle cx="0" cy="-2" r="2.6" fill="#df9fa9"/>
+        </g>
+        <!-- bud 2 -->
+        <g transform="translate(112,98) rotate(-14)">
+          <ellipse cx="-4" cy="9" rx="2.6" ry="5.4" fill="#9caf7e" transform="rotate(-32 -4 9)"/>
+          <ellipse cx="4" cy="9" rx="2.6" ry="5.4" fill="#8a9a6f" transform="rotate(32 4 9)"/>
+          <circle cx="-2.2" cy="0.5" r="2.9" fill="#eec1c7"/>
+          <circle cx="2.2" cy="0.5" r="2.9" fill="#e6b0b8"/>
+          <circle cx="0" cy="-2" r="2.6" fill="#df9fa9"/>
+        </g>
+        <!-- tiny single bud -->
+        <g transform="translate(120,30) rotate(6)">
+          <ellipse cx="0" cy="6" rx="2.2" ry="4.4" fill="#93a173" transform="rotate(18 0 6)"/>
+          <circle cx="0" cy="0" r="2.7" fill="#e6b0b8"/>
+        </g>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#buds)"/>
+  </svg>
 
-    <p class="section-label">Book a class with me</p>
+  <main class="page">
+    <h1>Vinova</h1>
+    <p class="tagline">Certified Pilates Instructor</p>
+
+    <div class="divider"></div>
+    <p class="script">Book with me</p>
 
     <nav class="links">
       <a class="link" href="https://classpass.com/studios/briiomare-beverly-hills" target="_blank" rel="noopener">
