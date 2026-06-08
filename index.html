@@ -17,40 +17,51 @@
 
 <style>
   :root {
-    --cream:       #f7f1e3;  /* paper background */
+    --tan:         #e7d7bf;  /* cream/tan stripe */
+    --blue-stripe: #95a9c0;  /* dusty blue stripe */
     --card:        #fdfaf3;  /* solid card over the pattern */
-    --ink:         #5b4636;  /* warm brown text */
-    --muted:       #8a7a66;  /* muted taupe-brown */
-    --brown-line:  #6b5238;  /* dark brown hairline */
-    --sage:        #93a173;  /* soft sage accent */
-    --sage-deep:   #6e7d52;  /* deeper sage for meta / hover */
-    --line:        #e6ddcb;  /* card border */
+    --blue:        #3f5a7a;  /* studio text / name */
+    --blue-deep:   #324a66;
+    --red:         #a82d2d;  /* hearts, scallop, accents */
+    --red-deep:    #8f2424;
+    --muted:       #6f7c8c;  /* muted slate */
+    --line:        #e3d8c4;  /* card border */
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     font-family: 'Jost', sans-serif;
-    color: var(--ink);
-    background-color: var(--cream);
-    /* soft sage vertical stripes */
+    color: var(--blue);
+    background-color: var(--tan);
+    /* blue + tan vertical stripes */
     background-image: repeating-linear-gradient(
       90deg,
-      transparent 0 40px,
-      rgba(147, 161, 115, 0.28) 40px 52px
+      var(--tan) 0 24px,
+      var(--blue-stripe) 24px 48px
     );
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    padding: 54px 22px 44px;
+    padding: 60px 22px 46px;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* scattered floral layer, sits above stripes, below content */
-  .floral-bg {
+  /* scattered red hearts, above stripes, below content */
+  .hearts-bg {
     position: fixed;
     inset: 0;
     z-index: 0;
+    pointer-events: none;
+  }
+
+  /* red scalloped awning across the very top */
+  .valance {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 38px;
+    z-index: 2;
     pointer-events: none;
   }
 
@@ -69,33 +80,38 @@
     font-size: 46px;
     letter-spacing: 0.05em;
     line-height: 1;
+    color: var(--blue-deep);
     margin-bottom: 14px;
-    text-shadow: 0 1px 10px rgba(247, 241, 227, 0.9);
+    text-shadow: 0 1px 12px rgba(231, 215, 191, 0.95);
   }
 
   .tagline {
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 400;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
     color: var(--muted);
+    line-height: 1.7;
+    text-shadow: 0 1px 8px rgba(231, 215, 191, 0.9);
   }
+  .tagline .city { color: var(--red); }
 
-  /* thin dark-brown divider */
+  /* thin red divider */
   .divider {
     width: 46px;
     height: 1px;
-    background: var(--brown-line);
-    margin: 24px auto 18px;
-    opacity: 0.7;
+    background: var(--red);
+    margin: 22px auto 16px;
+    opacity: 0.85;
   }
 
   .script {
     font-family: 'Parisienne', cursive;
-    font-size: 32px;
-    color: var(--sage-deep);
+    font-size: 33px;
+    color: var(--red);
     line-height: 1;
     margin-bottom: 26px;
+    text-shadow: 0 1px 10px rgba(231, 215, 191, 0.9);
   }
 
   /* ---- Buttons ---- */
@@ -108,20 +124,19 @@
   .link {
     display: block;
     text-decoration: none;
-    color: var(--ink);
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 16px;
     padding: 17px 20px;
     transition: transform .18s ease, box-shadow .18s ease,
                 border-color .18s ease, background .18s ease;
-    box-shadow: 0 1px 2px rgba(90,80,60,0.05);
+    box-shadow: 0 1px 2px rgba(70,60,45,0.05);
   }
 
   .link:hover, .link:focus-visible {
     transform: translateY(-2px);
-    box-shadow: 0 10px 22px rgba(90,80,60,0.12);
-    border-color: var(--sage);
+    box-shadow: 0 10px 22px rgba(70,60,45,0.13);
+    border-color: var(--red);
     background: #ffffff;
     outline: none;
   }
@@ -130,6 +145,7 @@
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 0.01em;
+    color: var(--blue);
   }
 
   .link .meta {
@@ -141,13 +157,18 @@
     font-size: 11px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--sage-deep);
+    color: var(--red);
   }
 
   .link .meta .dot { color: var(--muted); }
 
+  /* shop button — colors inverted so it stands apart */
+  .link.shop { margin-top: 8px; border-color: #e6c9b6; }
+  .link.shop .studio { color: var(--red); }
+  .link.shop .meta { color: var(--blue); }
+
   /* ---- Footer / Instagram ---- */
-  .footer { margin-top: 38px; }
+  .footer { margin-top: 34px; }
 
   .ig {
     display: inline-flex;
@@ -158,56 +179,64 @@
     font-size: 13px;
     letter-spacing: 0.12em;
     transition: color .18s ease;
+    text-shadow: 0 1px 8px rgba(231, 215, 191, 0.9);
   }
-  .ig:hover { color: var(--sage-deep); }
+  .ig:hover { color: var(--blue); }
   .ig svg { width: 17px; height: 17px; }
 
   .credit {
-    margin-top: 24px;
+    margin-top: 22px;
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #b9ac95;
+    color: var(--blue-deep);
+    opacity: 0.55;
+    text-shadow: 0 1px 8px rgba(231, 215, 191, 0.9);
   }
 </style>
 </head>
 <body>
-  <!-- Soft scattered rosebuds (tiled SVG pattern) -->
-  <svg class="floral-bg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
+  <!-- Scattered red hearts (tiled SVG pattern) -->
+  <svg class="hearts-bg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
     <defs>
-      <pattern id="buds" width="150" height="138" patternUnits="userSpaceOnUse">
-        <!-- bud 1 -->
-        <g transform="translate(34,40) rotate(10)">
-          <ellipse cx="-4" cy="9" rx="2.6" ry="5.4" fill="#8a9a6f" transform="rotate(-32 -4 9)"/>
-          <ellipse cx="4" cy="9" rx="2.6" ry="5.4" fill="#9caf7e" transform="rotate(32 4 9)"/>
-          <circle cx="-2.2" cy="0.5" r="2.9" fill="#e6b0b8"/>
-          <circle cx="2.2" cy="0.5" r="2.9" fill="#eec1c7"/>
-          <circle cx="0" cy="-2" r="2.6" fill="#df9fa9"/>
+      <pattern id="hearts" width="150" height="165" patternUnits="userSpaceOnUse">
+        <g transform="translate(22,30) scale(0.55) rotate(-6)">
+          <path d="M12,20 C12,20 3,13 3,8.2 A4.4,4.4 0 0,1 12,5.6 A4.4,4.4 0 0,1 21,8.2 C21,13 12,20 12,20 Z" fill="#a82d2d"/>
         </g>
-        <!-- bud 2 -->
-        <g transform="translate(112,98) rotate(-14)">
-          <ellipse cx="-4" cy="9" rx="2.6" ry="5.4" fill="#9caf7e" transform="rotate(-32 -4 9)"/>
-          <ellipse cx="4" cy="9" rx="2.6" ry="5.4" fill="#8a9a6f" transform="rotate(32 4 9)"/>
-          <circle cx="-2.2" cy="0.5" r="2.9" fill="#eec1c7"/>
-          <circle cx="2.2" cy="0.5" r="2.9" fill="#e6b0b8"/>
-          <circle cx="0" cy="-2" r="2.6" fill="#df9fa9"/>
+        <g transform="translate(106,92) scale(0.5) rotate(8)">
+          <path d="M12,20 C12,20 3,13 3,8.2 A4.4,4.4 0 0,1 12,5.6 A4.4,4.4 0 0,1 21,8.2 C21,13 12,20 12,20 Z" fill="#a82d2d"/>
         </g>
-        <!-- tiny single bud -->
-        <g transform="translate(120,30) rotate(6)">
-          <ellipse cx="0" cy="6" rx="2.2" ry="4.4" fill="#93a173" transform="rotate(18 0 6)"/>
-          <circle cx="0" cy="0" r="2.7" fill="#e6b0b8"/>
+        <g transform="translate(120,26) scale(0.42) rotate(0)">
+          <path d="M12,20 C12,20 3,13 3,8.2 A4.4,4.4 0 0,1 12,5.6 A4.4,4.4 0 0,1 21,8.2 C21,13 12,20 12,20 Z" fill="#a82d2d"/>
+        </g>
+        <g transform="translate(58,128) scale(0.48) rotate(5)">
+          <path d="M12,20 C12,20 3,13 3,8.2 A4.4,4.4 0 0,1 12,5.6 A4.4,4.4 0 0,1 21,8.2 C21,13 12,20 12,20 Z" fill="#a82d2d"/>
         </g>
       </pattern>
     </defs>
-    <rect width="100%" height="100%" fill="url(#buds)"/>
+    <rect width="100%" height="100%" fill="url(#hearts)"/>
+  </svg>
+
+  <!-- Red scalloped awning -->
+  <svg class="valance" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <pattern id="scallop" width="36" height="38" patternUnits="userSpaceOnUse">
+        <circle cx="18" cy="12" r="18" fill="#a82d2d"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="38" fill="url(#scallop)"/>
+    <rect width="100%" height="13" fill="#a82d2d"/>
   </svg>
 
   <main class="page">
     <h1>Vinova</h1>
-    <p class="tagline">Certified Pilates Instructor</p>
+    <p class="tagline">
+      Balanced Body Certified Pilates Instructor<br />
+      <span class="city">Los Angeles</span>
+    </p>
 
     <div class="divider"></div>
-    <p class="script">Book with me</p>
+    <p class="script">Book a Class</p>
 
     <nav class="links">
       <a class="link" href="https://classpass.com/studios/briiomare-beverly-hills" target="_blank" rel="noopener">
@@ -233,6 +262,11 @@
       <a class="link" href="https://reformpilates.la/" target="_blank" rel="noopener">
         <div class="studio">Reform Pilates</div>
         <div class="meta">West Hollywood <span class="dot">·</span> Book</div>
+      </a>
+
+      <a class="link shop" href="https://shopfootwrk.com" target="_blank" rel="noopener">
+        <div class="studio">Shop Grip Socks</div>
+        <div class="meta">shopfootwrk.com</div>
       </a>
     </nav>
 
