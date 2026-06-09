@@ -73,24 +73,25 @@
     text-align: center;
   }
 
-  /* ---- Header "sign" panel (solid, for readability) ---- */
+  /* ---- Title "sign" panel (solid, for readability) ---- */
   .header-card {
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 20px;
-    padding: 28px 24px 26px;
-    margin-bottom: 22px;
+    padding: 30px 18px 22px;
+    margin-bottom: 16px;
     box-shadow: 0 6px 18px rgba(70,60,45,0.10);
   }
 
   h1 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 500;
-    font-size: 34px;
-    letter-spacing: 0.02em;
-    line-height: 1.06;
+    /* scales with the screen so it fills the width and reads as the title */
+    font-size: clamp(38px, 11vw, 54px);
+    letter-spacing: 0.015em;
+    line-height: 1.04;
     color: var(--blue-deep);
-    margin-bottom: 13px;
+    margin-bottom: 14px;
     overflow-wrap: break-word;
   }
 
@@ -104,20 +105,30 @@
   }
   .tagline .city { color: var(--red); }
 
-  /* thin red divider */
+  /* bold red line — closes off the title block */
   .divider {
-    width: 46px;
-    height: 1px;
+    width: 76px;
+    height: 2px;
+    border-radius: 1px;
     background: var(--red);
-    margin: 18px auto 14px;
-    opacity: 0.85;
+    margin: 18px auto 2px;
+  }
+
+  /* ---- "Book a Class" header box (labels the buttons) ---- */
+  .section-box {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 12px 20px 10px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(70,60,45,0.05);
   }
 
   .script {
     font-family: 'Parisienne', cursive;
     font-size: 31px;
     color: var(--red);
-    line-height: 1;
+    line-height: 1.1;
     margin: 0;
   }
 
@@ -250,6 +261,9 @@
       </p>
 
       <div class="divider"></div>
+    </div>
+
+    <div class="section-box">
       <p class="script">Book a Class</p>
     </div>
 
