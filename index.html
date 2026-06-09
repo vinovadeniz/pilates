@@ -77,22 +77,21 @@
   .header-card {
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 20px;
-    padding: 30px 18px 22px;
+    border-radius: 18px;
+    padding: 24px 26px 18px;
     margin-bottom: 16px;
     box-shadow: 0 6px 18px rgba(70,60,45,0.10);
   }
 
+  /* SVG title scales to fill the box width, always on one line */
   h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    /* scales with the screen so it fills the width and reads as the title */
-    font-size: clamp(38px, 11vw, 54px);
-    letter-spacing: 0.015em;
-    line-height: 1.04;
-    color: var(--blue-deep);
-    margin-bottom: 14px;
-    overflow-wrap: break-word;
+    margin: 0 0 12px;
+    line-height: 0;
+  }
+  h1 svg {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .tagline {
@@ -254,7 +253,13 @@
 
   <main class="page">
     <div class="header-card">
-      <h1>Move with Vinova</h1>
+      <h1>
+        <svg viewBox="0 0 700 108" role="img" aria-label="Move with Vinova" xmlns="http://www.w3.org/2000/svg">
+          <text x="350" y="82" text-anchor="middle"
+                font-family="'Cormorant Garamond', serif" font-weight="500"
+                font-size="96" letter-spacing="1" fill="#324a66">Move with Vinova</text>
+        </svg>
+      </h1>
       <p class="tagline">
         Balanced Body Certified Pilates Instructor<br />
         <span class="city">Los Angeles</span>
